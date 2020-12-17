@@ -10,5 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "cypress": "^6.1.0"
+  },
+  "devDependencies": {
+    "cypress-xpath": "^1.6.1",
+    "faker": "^5.1.0"
   }
 }
