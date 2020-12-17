@@ -1,18 +1,16 @@
 describe("Testing crowdstreet registration", () => {
-
+    //Random test data for registration
     const firstName = cy.faker.name.firstName()
     const lastName = cy.faker.name.lastName()
     const email = firstName.toLowerCase() + lastName.toLowerCase() + "@fakeemail.com"
 
-    it("Navigate to crowdstreet test site", () => {
+    it.only("Register new user to Crowdstreet test site", () => {
+        //Navigate to the crowdstreet test site
         cy.visit("https://test.crowdstreet.com/")
-    })
 
-    it("Select create account menu button", () => {
+        //Entering data to register then submit
         cy.get('.tablet-menu > .join-button').click()
-    })
-
-    it("Enter registration data", () => {
+        cy.url().should('eq', 'https://test.crowdstreet.com/invexp/accounts/create-account/')
         cy.get('#create_account_email').type(email)
         cy.get('.-left > .ui > input').type(firstName)
         cy.get(':nth-child(4) > :nth-child(2) > .ui > input').type(lastName)
@@ -30,9 +28,8 @@ describe("Testing crowdstreet registration", () => {
         cy.get(':nth-child(2) > ._field_1fb41 > ._check_1fb41').click()
         cy.solveGoogleReCAPTCHA()
         cy.get('.account-creation-form-container > ._flat_d2f0c').click()
-    })
 
-    it('Assert regristration name on splash page', () => {
+        //Asserting the name on the splash page
         cy.get('.title').should('contain', firstName)
     })
 })

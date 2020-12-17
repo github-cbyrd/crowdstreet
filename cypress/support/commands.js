@@ -25,8 +25,6 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('solveGoogleReCAPTCHA', () => {
-    // Wait until the iframe (Google reCAPTCHA) is totally loaded
-    cy.wait(500);
     cy.get('.recaptcha-container > div > div iframe')
             .then($iframe => {
             const $body = $iframe.contents().find('body');
